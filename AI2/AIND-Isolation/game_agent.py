@@ -50,7 +50,7 @@ def custom_score(game, player):
     #print(len(own_moves))
     opponent_moves = len(game.get_legal_moves(game.get_opponent(player)))
     #print(len(opponent_moves))
-    return float(own_moves - (2*opponent_moves))
+    return float(own_moves - opponent_moves)
     #return float(own_moves - opponent_moves)
 
 
@@ -94,11 +94,11 @@ def custom_score_2(game, player):
     #print(len(opponent_moves))
     return float(own_moves - (2*opponent_moves))'''
 
-    '''bad_moves = [(0,0),(0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(0,7),
+    bad_moves = [(0,0),(0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(0,7),
                  (1,0),(2,0),(3,0),(4,0),(5,0),(6,0),(7,0),
                  (7,1),(7,2),(7,3),(7,4),(7,5),(7,6),(7,7),
-                 (1,7),(2,7),(3,7),(4,7),(5,7),(6,7)]'''
-    bad_moves = [(0,0),(0,7),(7,0),(7,7)]
+                 (1,7),(2,7),(3,7),(4,7),(5,7),(6,7)]
+    '''bad_moves = [(0,0),(0,7),(7,0),(7,7)]'''
     player1_score = 0
     player2_score = 0
     game_location_1 = game.get_player_location(player)
@@ -144,7 +144,7 @@ def custom_score_3(game, player):
     own_moves = len(game.get_legal_moves(player))
     #print(len(own_moves))
     opponent_moves = len(game.get_legal_moves(game.get_opponent(player)))
-    if len(blank_spaces) >= 35:
+    if len(blank_spaces) >= 20:
         return float(own_moves - 3*opponent_moves)
     else:
         return float(3*own_moves - opponent_moves)
@@ -191,7 +191,7 @@ class IsolationPlayer:
         positive value large enough to allow the function to return before the
         timer expires.
     """
-    def __init__(self, search_depth=8, score_fn=custom_score, timeout=10.):
+    def __init__(self, search_depth=25, score_fn=custom_score, timeout=10.):
         self.search_depth = search_depth
         self.score = score_fn
         self.time_left = None
